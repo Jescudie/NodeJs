@@ -38,27 +38,19 @@ export default async function handler(req, res) {
 
     var { name } = req.query;
     if (name == null) { var name = req.body.name; };
-    console.log(name);
 
     var { email } = req.query;
     if (email == null) { var email = req.body.email; };
-    console.log(email);
 
     var { movie_id } = req.query;
     if (movie_id == null) { var movie_id = req.body.movie_id; };
-    console.log(movie_id);
 
     var { text } = req.query;
     if (text == null) { var text = req.body.text; };
-    console.log(text);
 
     const currentDate = new Date();
     
-    console.log("name :", name);
-    console.log("email :", email);
-    console.log("movie_id :", movie_id);
-    console.log("text :", text);
-    console.log("date :", currentDate);
-    db.collection("comments").insertOne({name:name, email:email, movie_id:ObjectId(movie_id), text:text, date:Date(currentDate)});
-    res.json({ status: 200, data: "Commentaire enregistré" });
+    console.log("name :", name, "\temail :", email,"\tmovie_id :", movie_id,"\ttext :", text,"\tdate :", currentDate);
+    const newComment = await db.collection("comments").insertOne({name:name, email:email, movie_id:ObjectId(movie_id), text:text, date:Date(currentDate)});
+    res.json({ status: 200, data: {id: newComment.insertedId, Information: "Commentaire enregistré" }});
 }
