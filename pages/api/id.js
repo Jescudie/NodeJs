@@ -17,10 +17,11 @@ import clientPromise from "../../lib/mongodb";
 */
 
 export default async function handler(req, res) {
-const client = await clientPromise;
-const db = client.db("sample_mflix");
-const { id } = req.query;
-console.log(id)
-const movies = await db.collection("movies").find({_id: ObjectId(id) }).limit(10).toArray();
-res.json({ status: 200, data: movies });
+    const client = await clientPromise;
+    const db = client.db("sample_mflix");
+    var { id } = req.query;
+    if (id == null) { var id = req.body.id; };
+    console.log(id)
+    const movies = await db.collection("movies").find({_id: ObjectId(id) }).limit(10).toArray();
+    res.json({ status: 200, data: movies });
 }
