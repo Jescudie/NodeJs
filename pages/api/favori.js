@@ -10,12 +10,12 @@ import clientPromise from "../../lib/mongodb";
 *           200:
 *               description: Hello Movies
 *       parameters:
-*         - in: body
+*         - in: query
 *           name: name
 *           required: true
 *           type: string
 *           description: Nom de l'utilisateur
-*         - in: body
+*         - in: query
 *           name: movie_id
 *           required: true
 *           type: string

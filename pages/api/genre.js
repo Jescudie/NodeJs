@@ -9,7 +9,7 @@ import clientPromise from "../../lib/mongodb";
 *           200:
 *               description: Hello Movies
 *       parameters:
-*         - in: body
+*         - in: query
 *           name: genre
 *           required: true
 *           type: string
